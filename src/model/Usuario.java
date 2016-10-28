@@ -20,43 +20,17 @@ public class Usuario {
 
     public Usuario(int id) {
         this.id = id;
-        this.setGrupo_id(JFrameLogin.jDBQueryLogin.getCurrentFieldValueAsInteger("grupo_id"));
-        this.setPessoa_id(JFrameLogin.jDBQueryLogin.getCurrentFieldValueAsInteger("pessoa_id"));
-        this.setUsername(JFrameLogin.jDBQueryLogin.getCurrentFieldValueAsString("username"));
+        this.grupo_id = JFrameLogin.jDBQueryLogin.getCurrentFieldValueAsInteger("grupo_id");
+        this.pessoa_id = JFrameLogin.jDBQueryLogin.getCurrentFieldValueAsInteger("pessoa_id");
+        this.username = JFrameLogin.jDBQueryLogin.getCurrentFieldValueAsString("username");
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getPessoa_id() {
-        return pessoa_id;
-    }
-
-    public void setPessoa_id(int pessoa_id) {
-        this.pessoa_id = pessoa_id;
-    }
-
-    public int getGrupo_id() {
-        return grupo_id;
-    }
-
-    public void setGrupo_id(int grupo_id) {
-        this.grupo_id = grupo_id;
-    }
-    
+    /**
+    * Verifica se o usuario que está logado ou seja, 
+    * na jDBQueryLogin tem permissão para acessar a tela informa no parametro
+    *
+    * @param  nome_jframe variavel com o nome do JFrame cadastrada na base
+    * @return true se tiver acesso , falase se não
+    */
     public boolean verificaAcesso(String nome_jframe){
         JDBQuery query = new JDBQuery();
         query.setJDBConnection(JFrameLogin.jDBConnectionPrincipal);
